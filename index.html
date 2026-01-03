@@ -14,17 +14,25 @@
     }
 
     body {
-      margin: 0;
-      padding: 12px;
-      font-family: Poppins, sans-serif;
-      color: white;
-      background-image: url('ChatGPT Image Jan 3, 2026, 06_46_16 PM.png');
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-size: cover;
-      min-height: 100svh;
-      overflow-x: hidden;
-    }
+  margin: 0;
+  padding: 12px;
+  font-family: Poppins, sans-serif;
+  color: white;
+  min-height: 100svh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('Renz.png');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  z-index: -1;
+}
 
     /* HEADER */
     .app-header {
@@ -51,7 +59,7 @@
       color: white;
       font-size: 14px;
       cursor: pointer;
-      margin-top: 1px;
+      margin-top: 0px;
     }
 
     .soundbtn {
@@ -96,7 +104,7 @@
       background: rgba(245, 159, 11, 0.289);
       backdrop-filter: none;
       color: #1f2937;
-      font-size:x-large ;
+      font-size: x-large;
       /* tanggal glass effect */
 
       border-radius: 14px;
@@ -151,19 +159,22 @@
     }
 
     @keyframes coinPulse {
-  0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
-  }
-  70% {
-    transform: scale(1.15);
-    box-shadow: 0 0 18px rgba(250, 204, 21, 0.9);
-  }
-  100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
-  }
-}
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
+      }
+
+      70% {
+        transform: scale(1.15);
+        box-shadow: 0 0 18px rgba(250, 204, 21, 0.9);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
+      }
+    }
+
     /* ADD */
     .addBusinessBtn {
       width: 100%;
