@@ -2,490 +2,288 @@
 <html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Business Tycoon</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box
+    }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      color: white;
-
-      background: #0f172a;
-      background-image: url('ChatGPT Image Jan 3, 2026, 06_46_16 PM.png');
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-size: cover;
-      /* Ensures the image fills the screen */
-      background-position: center;
-      /* Centers the image */
-      background-size: cover;
-      background-position: center;
-
       margin: 0;
-      padding: 14px;
-
+      padding: 12px;
+      font-family: Poppins, sans-serif;
+      color: white;
+      background-image: url('ChatGPT Image Jan 3, 2026, 06_46_16 PM.png');
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
       min-height: 100svh;
-      /* 🔥 mobile-safe height */
       overflow-x: hidden;
     }
 
+    /* HEADER */
     .app-header {
       position: sticky;
       top: 0;
-      z-index: 999;
-
+      z-index: 99;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
-      padding: 10px 12px;
-      margin-bottom: 12px;
-
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(10px);
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 0px;
+      background: rgba(0, 0, 0, 0.322);
       border-radius: 14px;
+      background: none;
+      backdrop-filter: none;
+      position: relative;
     }
 
-    h2,
-    h3 {
+    .header-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 6px 10px;
+      background: #32b3cd;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 1px;
+    }
+
+    .soundbtn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 18px
+    }
+
+    /* TITLE */
+    .title,
+    .money {
       text-align: center;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 12px;
+      background: rgba(0, 0, 0, .55);
+      padding: 10px;
       border-radius: 12px;
+      margin-bottom: 3px;
     }
 
+    /* LOCKED */
+    #lockedBanner {
+      display: none;
+      background: rgba(245, 159, 11, .55);
+      padding: 8px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* BUSINESS LIST */
     #businessList {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .business {
-      background: rgba(0, 0, 0, 0.55);
-      border-radius: 18px;
-      padding: 14px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 230px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      gap: 4px;
+      /* halos dikit */
     }
 
-    .coin-pulse {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #facc15, #f59e0b);
+    /* BUSINESS CARD */
+    .business {
+      background: rgba(245, 159, 11, 0.289);
+      backdrop-filter: none;
       color: #1f2937;
-      font-weight: 900;
+      font-size:x-large ;
+      /* tanggal glass effect */
 
-      display: flex;
+      border-radius: 14px;
+      padding: 6px 8px;
+
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 10px;
       align-items: center;
-      justify-content: center;
-      margin: 6px 0;
+    }
 
-      animation: coinPulse 1.4s infinite ease-in-out;
+    .business-icon {
+      font-size: 22px
+    }
+
+    .business-info {
+      font-size: 13px;
+      line-height: 1.3
     }
 
     .upgradeBtn {
-      align-self: flex-start;
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 700;
       border: none;
-      border-radius: 12px;
-      cursor: pointer;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
       background: #f59e0b;
       color: #1f2937;
-    }
-
-    .upgradeBtn:hover {
-      transform: scale(1.05);
+      cursor: pointer;
     }
 
     .upgradeBtn:disabled {
       background: #4b5563;
-      color: #9ca3af;
+      color: #9ca3af
     }
 
+    /* COIN */
+    .coin-pulse {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #facc15, #f59e0b);
+      color: #1f2937;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 1.4s infinite;
+      margin-top: 4px;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: .9
+      }
+
+      70% {
+        transform: 1.15
+      }
+
+      100% {
+        transform: .9
+      }
+    }
+
+    /* ADD */
     .addBusinessBtn {
-      background: #ff9800;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: white;
       width: 100%;
-    }
-
-    .addBusinessBtn:hover {
-      transform: scale(1.02);
-    }
-
-    .resetBtn {
-      background: #32b3cd;
-      border: none;
       padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      color: white;
-      width: 95px;
-      height: 40px;
-    }
-
-    .resetBtn:hover {
-      transform: scale(1.05);
-    }
-
-    .aboutbtn {
-      background-color: #3297cd;
-      position: absolute;
-      margin-left: 10px;
-      margin-top: 10px;
       border: none;
-      border-radius: 6px;
-      height: 30px;
-    }
-
-    /* TOOLTIP */
-    .aboutbtn::after {
-      content: "About Game";
-      position: absolute;
-      bottom: 30px;
-      right: 50%;
-      transform: translateX(50%);
-
-      background: rgba(0, 0, 0, 0.55);
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      background: #ff9800;
       color: white;
-      padding: 6px 10px;
-      border-radius: 8px;
-
-      font-size: 12px;
-      white-space: nowrap;
-
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+      margin-top: 6px;
     }
 
-    /* SHOW ON HOVER */
-    .aboutbtn:hover::after {
-      opacity: 1;
-      transform: translateX(50%) translateY(4px);
-    }
-
-    /* PROMO POPUP */
+    /* ABOUT */
     .promo-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, .65);
       backdrop-filter: blur(8px);
-      z-index: 99999;
+      z-index: 999;
     }
 
     .promo-card {
-      position: relative;
-      max-width: 420px;
-      margin: 90px auto;
-      padding: 28px 22px;
-      border-radius: 20px;
-
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
-      backdrop-filter: blur(14px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-
+      max-width: 360px;
+      margin: 80px auto;
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .05));
       text-align: center;
-    }
-
-    .promo-card h1 {
-      font-size: 28px;
-      margin-bottom: 6px;
-    }
-
-    .promo-card h2 {
-      font-size: 20px;
-      color: #facc15;
-      margin-bottom: 14px;
-    }
-
-    .promo-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .promo-features {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #e5e7eb;
-    }
-
-    .promo-btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 14px;
-      border: none;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-
-      background: linear-gradient(135deg, #facc15, #f59e0b);
-      color: #1f2937;
-    }
-
-    .promo-btn:hover {
-      transform: scale(1.03);
     }
 
     .promo-close {
       position: absolute;
+      right: 18px;
       top: 14px;
-      right: 16px;
-      background: none;
       border: none;
+      background: none;
       color: white;
       font-size: 18px;
       cursor: pointer;
     }
-
-    .soundbtn {
-      position: absolute;
-      top: 15px;
-      right: 16px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: #32b3cd;
-      color: #facc15;
-      font-size: 20px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 9999;
-    }
-
-    .soundbtn:hover {
-      transform: scale(1.05);
-    }
-
-    @keyframes coinPulse {
-      0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
-      }
-
-      70% {
-        transform: scale(1.15);
-        box-shadow: 0 0 18px rgba(250, 204, 21, 0.9);
-      }
-
-      100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 rgba(250, 204, 21, 0.6);
-      }
-    }
-    /* ================= MOBILE FIX ================= */
-@media (max-width: 480px) {
-
-  body {
-    padding: 10px;
-  }
-
-  h2 {
-    font-size: 20px;
-    padding: 10px;
-  }
-
-  h3 {
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  /* TOP BUTTONS */
-  .resetBtn,
-  .soundbtn,
-  .aboutbtn {
-    transform: scale(0.85);
-  }
-
-  /* BUSINESS CARDS */
-  .business {
-    min-height: auto;
-    padding: 12px;
-  }
-
-  .business h4 {
-    font-size: 14px;
-  }
-
-  .business p {
-    font-size: 13px;
-  }
-
-  .upgradeBtn {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-
-  /* MONEY ICON */
-  .coin-pulse {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-
-  /* LOCKED BANNER */
-  #lockedBanner {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  /* GRID */
-  #businessList {
-    grid-template-columns: 1fr;
-  }
-}
-
   </style>
 </head>
 
 <body>
 
-  <button id="resetBtn" class="resetBtn">🔄Reset</button>
-  <button id="aboutBtn" class="aboutbtn" aria-label="About Game">ℹ️</button>
-  <button id="soundBtn" class="soundbtn">🔊</button>
+  <!-- HEADER -->
+  <div class="app-header">
+    <div>
+      <button id="resetBtn" class="header-btn">🔄</button>
+      <button id="aboutBtn" class="header-btn">ℹ️</button>
+    </div>
+    <button id="soundBtn" class="header-btn soundbtn">🔊</button>
+  </div>
 
+  <div class="title">🏢 Business Tycoon</div>
+  <div class="money">💰 Money: <span id="money">₱0</span></div>
+
+  <button id="addBusinessBtn" class="addBusinessBtn"></button>
+
+  <div id="lockedBanner"></div>
+  <div id="businessList"></div>
+
+  <!-- ABOUT -->
   <div id="aboutModal" class="promo-overlay">
     <div class="promo-card">
-      <button class="promo-close" id="closeAbout">✖</button>
-
-      <h1>🏢 Business Tycoon</h1>
-      <h2>Build Your Empire</h2>
-
-      <p>
-        Earn money every second by investing in businesses.<br>
-        Upgrade, unlock, and dominate the market!
-      </p>
-
-      <div class="promo-features">
-        💰 Passive Income<br>
-        📈 Business Upgrades<br>
-        🔓 Unlock New Ventures
-      </div>
-
-      <button class="promo-btn">START INVESTING 🚀</button>
+      <button id="closeAbout" class="promo-close">✖</button>
+      <h2>Business Tycoon</h2>
+      <p>Earn money every second. Upgrade businesses. Become rich.</p>
     </div>
   </div>
 
-  <h2>🏢 Business Tycoon</h2>
-  <h3>💰 Money: <span id="money"></span></h3>
-
-  <button id="addBusinessBtn" class="addBusinessBtn"></button>
-  <div id="lockedBanner" style="
-  display:none;
-  background: rgba(245, 159, 11, 0.464);
-  color:white;
-  padding:10px;
-  border-radius:8px;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:16px;
-">
-  </div>
-
-  <div id="businessList"></div>
-
   <script>
 
-    let isResetting = false;
+    let incomeInterval = null;
 
-    const aboutBtn = document.getElementById("aboutBtn");
-    const aboutModal = document.getElementById("aboutModal");
-    const closeAbout = document.getElementById("closeAbout");
+    function startIncome() {
+      stopIncome(); // safety
 
-    aboutBtn.onclick = () => {
-      aboutModal.style.display = "block";
-    };
+      incomeInterval = setInterval(() => {
+        let total = 0;
 
-    closeAbout.onclick = () => {
-      aboutModal.style.display = "none";
-    };
+        owned.forEach(d => {
+          const b = types[d.index];
+          total += b.income * d.level;
+        });
 
-    aboutModal.onclick = (e) => {
-      if (e.target === aboutModal) {
-        aboutModal.style.display = "none";
+        money += total;
+        updateUI();
+        save();
+      }, 1000);
+    }
+
+    function stopIncome() {
+      if (incomeInterval) {
+        clearInterval(incomeInterval);
+        incomeInterval = null;
       }
-    };
+    }
 
-    /* ================== SOUND ================== */
-    const gameSound = {
+    /* ===== ELEMENTS ===== */
+    const moneyEl = document.getElementById("money");
+    const list = document.getElementById("businessList");
+    const addBtn = document.getElementById("addBusinessBtn");
+    const banner = document.getElementById("lockedBanner");
+
+    /* ===== SOUND ===== */
+    const sound = {
       bgm: new Audio("476546__mrthenoronha__platform-game-theme-loop-2.wav"),
       upgrade: new Audio("656396__nikos34__upgrade-2.wav"),
       unlock: new Audio("810182__mokasza__cash-register-purchase.mp3")
     };
+    sound.bgm.loop = true; sound.bgm.volume = .25;
+    let soundOn = true;
+    function play(t) { if (!soundOn) return; sound[t].currentTime = 0; sound[t].play().catch(() => { }) }
+    document.addEventListener("click", () => sound.bgm.play().catch(() => { }), { once: true });
+    soundBtn.onclick = () => { soundOn = !soundOn; soundBtn.textContent = soundOn ? "🔊" : "🔇"; soundOn ? sound.bgm.play() : sound.bgm.pause() };
 
-    let soundEnabled = true;
-    gameSound.bgm.loop = true;
-    gameSound.bgm.volume = 0.25;
-
-    function playSound(type) {
-      if (!soundEnabled) return;
-
-      const sound = gameSound[type];
-      if (!sound) return;
-
-      sound.currentTime = 0;   // 🔥 ITO ANG SUSI
-      sound.play().catch(() => { });
-    }
-
-    function startBGM() {
-      if (!soundEnabled) return;
-
-      gameSound.bgm.currentTime = 0;
-      gameSound.bgm.play().catch(() => { });
-    }
-
-    document.addEventListener("click", startBGM, { once: true });
-
-    const soundBtn = document.getElementById("soundBtn");
-
-    soundBtn.onclick = () => {
-      soundEnabled = !soundEnabled;
-
-      if (!soundEnabled) {
-        gameSound.bgm.pause();
-        soundBtn.textContent = "🔇"; // muted icon
-      } else {
-        startBGM();
-        soundBtn.textContent = "🔊"; // sound on icon
-      }
-    };
-
-    /* ================== STATE (SAFE LOAD) ================== */
-    let money = parseFloat(localStorage.getItem("money"));
-    if (isNaN(money)) money = 0;
-
-    let currentBusinessIndex = parseInt(localStorage.getItem("businessIndex")) || 0;
-    let ownedBusinesses = JSON.parse(localStorage.getItem("ownedBusinesses")) || [];
-    let intervals = [];
-
-    /* ================== ELEMENTS ================== */
-    const moneyEl = document.getElementById("money");
-    const businessList = document.getElementById("businessList");
-    const addBusinessBtn = document.getElementById("addBusinessBtn");
-    const resetBtn = document.getElementById("resetBtn");
-
-    /* ================== DATA ================== */
-    const businessTypes = [
+    /* ===== DATA ===== */
+    const types = [
       { name: "Sari-sari Store", icon: "🏪", income: 10, unlockCost: 0 },
       { name: "Carinderia", icon: "🍲", income: 25, unlockCost: 1000 },
       { name: "Rice Retailing", icon: "🍚", income: 60, unlockCost: 3000 },
@@ -500,153 +298,94 @@
       { name: "Real Estate", icon: "🏢", income: 20000000, unlockCost: 150000000 }
     ];
 
-    /* ================== CORE ================== */
-    function saveGame() {
-      localStorage.setItem("money", String(money)); // RAW NUMBER ONLY
-      localStorage.setItem("businessIndex", String(currentBusinessIndex));
-      localStorage.setItem("ownedBusinesses", JSON.stringify(ownedBusinesses));
-    }
+    /* ===== STATE ===== */
+    let money = +localStorage.money || 0;
+    let idx = +localStorage.idx || 0;
+    let owned = JSON.parse(localStorage.owned || "[]");
 
-    function formatMoneyShort(v) {
-      if (v >= 1e12) return `₱${(v / 1e12).toFixed(1)}T`;
-      if (v >= 1e9) return `₱${(v / 1e9).toFixed(1)}B`;
-      if (v >= 1e6) return `₱${(v / 1e6).toFixed(1)}M`;
-      if (v >= 1e3) return `₱${(v / 1e3).toFixed(1)}K`;
-      return `₱${v}`;
-    }
+    /* ===== UTILS ===== */
+    const fmt = v => v >= 1e9 ? `₱${(v / 1e9).toFixed(1)}B` : v >= 1e6 ? `₱${(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `₱${(v / 1e3).toFixed(1)}K` : `₱${v}`;
+    const save = () => { localStorage.money = money; localStorage.idx = idx; localStorage.owned = JSON.stringify(owned) };
 
+    /* ===== UI ===== */
     function updateUI() {
-      moneyEl.textContent = formatMoneyShort(money);
-      updateAddButton();
-      updateLockedBanner();
+      moneyEl.textContent = fmt(money);
+      if (idx >= types.length) { addBtn.textContent = "All Businesses Unlocked"; addBtn.disabled = true; banner.style.display = "block"; banner.textContent = "🎉 All Businesses Unlocked"; return; }
+      const n = types[idx];
+      addBtn.textContent = money >= n.unlockCost ? `➕ Invest ${n.name} (${fmt(n.unlockCost)})` : n.name;
+      addBtn.disabled = money < n.unlockCost;
+      banner.style.display = money < n.unlockCost ? "block" : "none";
+      banner.textContent = `🔒 Next: ${n.name} at ${fmt(n.unlockCost)}`;
     }
 
-    function updateAddButton() {
-      if (currentBusinessIndex >= businessTypes.length) {
-        addBusinessBtn.disabled = true;
-        addBusinessBtn.textContent = "Congratulations!";
-        return;
-      }
-      const next = businessTypes[currentBusinessIndex];
-      addBusinessBtn.disabled = money < next.unlockCost;
-      addBusinessBtn.textContent = money >= next.unlockCost
-        ? `➕ Invest ${next.name} (₱${next.unlockCost.toLocaleString()})`
-        : `${next.name}`;
-    }
-
-    function updateLockedBanner() {
-      const banner = document.getElementById("lockedBanner");
-
-      if (currentBusinessIndex >= businessTypes.length) {
-        banner.style.display = "block";
-        banner.textContent = "🎉 All Businesses Unlocked";
-        return;
-      }
-
-      const next = businessTypes[currentBusinessIndex];
-
-      if (money >= next.unlockCost) {
-        banner.style.display = "none"; // 🔥 HIDE kapag kaya na
-        return;
-      }
-
-      banner.style.display = "block";
-      banner.textContent = `🔒 Invest in ${next.name} at ${formatMoneyShort(next.unlockCost)}`;
-    }
-
-    /* ================== RENDER ================== */
-    function renderBusiness(data) {
-      const b = businessTypes[data.index];
-      const div = document.createElement("div");
-      div.className = "business";
-
-      const upgradeCost = () => b.income * data.level * 10;
-
-      div.innerHTML = `
-    <div>
-      <h4>${b.icon} ${b.name}</h4>
-      <p>Level: <span class="level">${data.level}</span></p>
-      <p>Income: <span class="income">${formatMoneyShort(b.income * data.level)}</span>/sec</p>
-      <div>
-      <div class="coin-pulse">₱</div>
-    </div>
-    <button class="upgradeBtn">Upgrade ${formatMoneyShort(upgradeCost())}</button>
-  `;
-
-      const levelEl = div.querySelector(".level");
-      const incomeEl = div.querySelector(".income"); // 🔥 ADD THIS
-      const upgradeBtn = div.querySelector(".upgradeBtn");
-
-
-      function refreshUpgrade() {
-        upgradeBtn.textContent = `Upgrade ${formatMoneyShort(upgradeCost())}`;
-        upgradeBtn.disabled = money < upgradeCost();
-      }
-
-      upgradeBtn.onclick = () => {
-        const cost = upgradeCost();
-        if (money < cost) return;
-
-        money -= cost;
-        data.level++;
-
-        playSound("upgrade");
-
-        levelEl.textContent = data.level;
-        incomeEl.textContent = formatMoneyShort(b.income * data.level); // 🔥 FIX
-
-        refreshUpgrade();
-        updateUI();
-        saveGame();
-      };
-
-      const interval = setInterval(() => {
-        money += b.income * data.level;
-
-        incomeEl.textContent = formatMoneyShort(b.income * data.level); // 🔥 SAFE
-
-        updateUI();
-        refreshUpgrade();
-        saveGame();
-      }, 1000);
-
-      intervals.push(interval);
-      refreshUpgrade();
-      businessList.appendChild(div);
-    }
-
-    /* ================== ADD BUSINESS ================== */
-    addBusinessBtn.onclick = () => {
-      const b = businessTypes[currentBusinessIndex];
-      if (money < b.unlockCost) return;
-      money -= b.unlockCost;
-      const data = { index: currentBusinessIndex, level: 1 };
-      ownedBusinesses.push(data);
-      currentBusinessIndex++;
-      renderBusiness(data);
-      playSound("unlock");
+    /* ===== RENDER ===== */
+    function render() {
+      list.innerHTML = "";
+      owned.forEach(d => {
+        const b = types[d.index];
+        const div = document.createElement("div");
+        div.className = "business";
+        const cost = () => b.income * d.level * 10;
+        div.innerHTML = `
+   <div class="business-icon">${b.icon}</div>
+   <div class="business-info">
+    <strong>${b.name}</strong><br>
+    Lvl ${d.level} • ${fmt(b.income * d.level)}/s
+    <div class="coin-pulse">₱</div>
+   </div>
+   <button class="upgradeBtn">${fmt(cost())}</button>`;
+        const btn = div.querySelector("button");
+        btn.onclick = () => {
+          if (money < cost()) return;
+          money -= cost(); d.level++; play("upgrade");
+          render(); save();
+        };
+        list.appendChild(div);
+      });
       updateUI();
-      saveGame();
-    };
+    }
 
-    /* ================== RESET ================== */
+    /* ===== EVENTS ===== */
+    addBtn.onclick = () => {
+      const b = types[idx]; if (money < b.unlockCost) return;
+      money -= b.unlockCost; owned.push({ index: idx, level: 1 }); idx++;
+      play("unlock"); render(); save();
+    };
+    let isResetting = false;
+
     resetBtn.onclick = () => {
       if (!confirm("Reset all progress?")) return;
 
-      isResetting = true;        // 🔥 IMPORTANT
-      intervals.forEach(clearInterval);
+      // STOP income FIRST
+      stopIncome();
+
+      // clear storage
       localStorage.clear();
 
-      location.reload();
-    };
-    /* ================== INIT ================== */
-    ownedBusinesses.forEach(renderBusiness);
-    updateUI();
-    window.addEventListener("beforeunload", () => {
-      if (!isResetting) saveGame();
-    });
-  </script>
+      // reset state
+      money = 0;
+      idx = 0;
+      owned = [];
 
+      // reset UI
+      list.innerHTML = "";
+      banner.style.display = "none";
+
+      updateUI();
+
+      // restart clean income loop
+      startIncome();
+    };
+
+    /* ===== ABOUT ===== */
+    aboutBtn.onclick = () => aboutModal.style.display = "block";
+    closeAbout.onclick = () => aboutModal.style.display = "none";
+    aboutModal.onclick = e => { if (e.target === aboutModal) aboutModal.style.display = "none" };
+
+    /* INIT */
+    render();
+    startIncome();
+  </script>
 </body>
 
 </html>
